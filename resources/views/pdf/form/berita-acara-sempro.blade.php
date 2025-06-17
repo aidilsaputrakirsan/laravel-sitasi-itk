@@ -106,8 +106,12 @@
                                 <td style="border: 1px solid #000;padding:5px">{{ $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->name }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
-                                    @if($jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) }}" alt="" style="width: 80px;">
+                                    @if(isset($jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) && $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature)
+                                        <img src="{{ asset('storage/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) }}" alt="" style="width: 80px;">
+                                    @else
+                                        <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
+                                            [TTD 1]
+                                        </div>
                                     @endif
                                 </td>
                             </tr>
@@ -116,8 +120,12 @@
                                 <td style="border: 1px solid #000;padding:5px">{{ $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->name }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
-                                    @if($jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) }}" alt="" style="width: 80px;">
+                                    @if(isset($jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) && $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature)
+                                        <img src="{{ asset('storage/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) }}" alt="" style="width: 80px;">
+                                    @else
+                                        <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
+                                            [TTD 2]
+                                        </div>
                                     @endif
                                 </td>
                             </tr>
@@ -126,8 +134,12 @@
                                 <td style="border: 1px solid #000;padding:5px">{{ $jadwal->penguji1->name }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->penguji1->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
-                                    @if($jadwal->penguji1->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->penguji1->signature) }}" alt="" style="width: 80px;">
+                                    @if(isset($jadwal->penguji1->signature) && $jadwal->penguji1->signature)
+                                        <img src="{{ asset('storage/' . $jadwal->penguji1->signature) }}" alt="" style="width: 80px;">
+                                    @else
+                                        <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
+                                            [TTD P1]
+                                        </div>
                                     @endif
                                 </td>
                             </tr>
@@ -136,8 +148,12 @@
                                 <td style="border: 1px solid #000;padding:5px">{{ $jadwal->penguji2->name }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->penguji2->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
-                                    @if($jadwal->penguji2->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->penguji2->signature) }}" alt="" style="width: 80px;">
+                                    @if(isset($jadwal->penguji2->signature) && $jadwal->penguji2->signature)
+                                        <img src="{{ asset('storage/' . $jadwal->penguji2->signature) }}" alt="" style="width: 80px;">
+                                    @else
+                                        <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
+                                            [TTD P2]
+                                        </div>
                                     @endif
                                 </td>
                             </tr>
@@ -160,8 +176,12 @@
                                 
                             </td>
                             <td style="position: relative">
-                                @if($jadwal->penguji1->signature !== null)
-                                    <img src="{{ Storage::disk('s3')->url($jadwal->penguji1->signature) }}" alt="" style="position: absolute;right:130px;margin-top:20px;width:180px">
+                                @if(isset($jadwal->penguji1->signature) && $jadwal->penguji1->signature)
+                                    <img src="{{ asset('storage/' . $jadwal->penguji1->signature) }}" alt="" style="position: absolute;right:130px;margin-top:20px;width:180px">
+                                @else
+                                    <div style="position: absolute;right:130px;margin-top:20px;width:180px;height:60px;border: 1px solid #000;text-align:center;line-height:60px;font-size:12px;">
+                                        [Tanda Tangan Penguji 1]
+                                    </div>
                                 @endif
                             </td>
                         </tr>

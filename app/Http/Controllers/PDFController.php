@@ -25,16 +25,28 @@ class PDFController extends Controller
 
     public function form_ta_006(Request $request)
     {
+        set_time_limit(120);
+        ini_set('memory_limit', '512M');
+        
         if (!$request->userId) {
             return redirect('dashboard');
         }
+        
         $userId = $request->userId;
-        $data['bimbingan'] = Bimbingan::where('user_id', $userId)
+        
+        // FIX: Tambah eager loading untuk relationship 'dosens'
+        $data['bimbingans'] = Bimbingan::with([
+            'dosens:id,name,signature' // LOAD signature field!
+        ])->where('user_id', $userId)
             ->where('status', 'Approved')
             ->orderBy('tanggal', 'ASC')
             ->get();
-        $data['user'] = User::where('id', $userId)->first();
-        // return view('pdf.form.form-ta006');
+            
+        $data['user'] = User::with([
+            'mahasiswa.pengajuanTA.pembimbing1',
+            'mahasiswa.pengajuanTA.pembimbing2'
+        ])->where('id', $userId)->first();
+        
         return $this->pdfService->loadView('pdf.form.form-ta006', $data);
     }
 

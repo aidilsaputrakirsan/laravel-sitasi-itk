@@ -100,16 +100,19 @@
                     </thead>
                     <tbody>
                         <!-- Blank Row 1 -->
-                        @foreach($bimbingan as $bimbingan)
+                        @foreach($bimbingans as $bimbingan)
                         <tr style="border: 1px solid #000;text-align:start">
                             <td style="border: 1px solid #000;padding:40px">{{ \Carbon\Carbon::parse($bimbingan->tanggal)->format('d/m/Y') }}</td>
                             <td style="border: 1px solid #000;padding:5px;text-align:start">{{ $bimbingan->hasil_bimbingan }}</td>
                             <td style="border: 1px solid #000;padding:5px;text-align:start">{{ $bimbingan->ket_bimbingan }}</td>
                             <td style="border: 1px solid #000;padding:5px;text-align:center">
-                                @if($bimbingan->dosens->signature !== null)
-                                <div style="text-align:center">
-                                    <img src="{{ Storage::disk('s3')->url($bimbingan->dosens->signature) }}" style="width:100px;text-align:center">
-                                </div>
+                                @if(isset($bimbingan->dosens->signature) && $bimbingan->dosens->signature)
+                                    <div style="text-align:center">
+                                        <img src="{{ storage_path('app/public/' . $bimbingan->dosens->signature) }}" style="width:100px;">
+                                    </div>
+                                @else
+                                {{-- Area kosong bersih untuk TTD manual --}}
+                                    <div style="height:60px;"></div>
                                 @endif
                             </td>
                         </tr>

@@ -92,8 +92,9 @@ class Show extends Component
         ]);
 
         User::where('id', auth()->id())->update([
-            'signature' => $this->signature->store('sitasiitk/uploads/signature', 's3')
+        'signature' => $this->signature->store('signatures', 'public')
         ]);
+        
         $this->signature = null;
         $this->refreshSignature();
         $this->dispatch('alert:data', state: 'success', message: 'Tanda Tangan Telah di update ');
