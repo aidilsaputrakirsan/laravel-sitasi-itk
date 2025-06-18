@@ -39,7 +39,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Jurusan</td>
                         <td style="padding-top:10px;">:</td>
-                        <td style="padding-top:10px;"> Jurusan Matematikan dan Teknologi Informasi</td>
+                        <td style="padding-top:10px;"> Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td style="padding-top:10px;"></td>
@@ -64,23 +64,23 @@
                 <table width="100%" style="margin-top:40px;">
                     <tr>
                         <td style="text-align:center"></td>
-                        <td style="text-align:right">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
+                        <td style="text-align:right; padding-right: 150px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
                     </tr>
                     <tr>
                         <td style="position: relative">
                             
                         </td>
                         <td style="position: relative">
-                            <span style="position: absolute;right:120px;margin-top:60px;">Materai 10.000</span>
+                            <span style="position: absolute;right:250px;margin-top:80px;">Materai 10.000</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="text-align:center;padding-top: 120px;"></td>
-                        <td style="text-align:right;padding-top: 120px;">{{ $pengajuan->mahasiswa->nama }}</td>
+                        <td style="text-align:left;padding-top: 120px; padding-left: 400px;">{{ $pengajuan->mahasiswa->nama }}</td>
                     </tr>
                     <tr>
                         <td style="text-align:center"></td>
-                        <td style="text-align:right">NIM. {{ $pengajuan->mahasiswa->nim }}</td>
+                        <td style="text-align:left; padding-left: 400px;">NIM. {{ $pengajuan->mahasiswa->nim }}</td>
                     </tr>
                 </table>
             </div>

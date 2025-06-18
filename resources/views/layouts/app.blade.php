@@ -74,8 +74,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Developed by <a href="https://www.linkedin.com/in/ganisjrs/"
-                                    class="text-decoration-underline">Ganis J. R. Silitonga.</a>
+                                Developed by <a href="#"
+                                    class="text-decoration-underline">Sri Rahayu Natasia</a>
                             </div>
                         </div>
                     </div>

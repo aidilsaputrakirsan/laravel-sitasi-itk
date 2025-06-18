@@ -1,5 +1,5 @@
 @extends('layouts.surat')
-@section('title', 'Form TA-005')
+@section('title', 'Form TA-004')
 
 @section('style')
 @endsection
@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <table width="100%">
                         <tr>
-                            <td class="text-end"><b>Form. TA-005</b></td>
+                            <td class="text-end"><b>Form. TA-004</b></td>
                         </tr>
                     </table>
                     <table width="100%" class="mt-4">
@@ -39,7 +39,7 @@
                             <td style="padding-top:10px;"></td>
                             <td style="padding-top:10px;">Program Studi / Jurusan</td>
                             <td>:</td>
-                            <td> Sistem Informasi / Matematikan dan Teknologi Informasi</td>
+                            <td> Sistem Informasi / Teknik Elektro Informatika dan Bisnis</td>
                         </tr>
                         <tr>
                             <td style="padding-top:10px;"></td>
@@ -107,7 +107,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if(isset($jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) && $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature)
-                                        <img src="{{ asset('storage/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) }}" alt="" style="width: 80px;">
                                     @else
                                         <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
                                             [TTD 1]
@@ -121,7 +121,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if(isset($jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) && $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature)
-                                        <img src="{{ asset('storage/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) }}" alt="" style="width: 80px;">
                                     @else
                                         <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
                                             [TTD 2]
@@ -135,7 +135,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->penguji1->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if(isset($jadwal->penguji1->signature) && $jadwal->penguji1->signature)
-                                        <img src="{{ asset('storage/' . $jadwal->penguji1->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->penguji1->signature) }}" alt="" style="width: 80px;">
                                     @else
                                         <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
                                             [TTD P1]
@@ -149,7 +149,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countNilai($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->penguji2->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if(isset($jadwal->penguji2->signature) && $jadwal->penguji2->signature)
-                                        <img src="{{ asset('storage/' . $jadwal->penguji2->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->penguji2->signature) }}" alt="" style="width: 80px;">
                                     @else
                                         <div style="border: 1px solid #000; width: 80px; height: 40px; text-align: center; line-height: 40px; font-size: 10px;">
                                             [TTD P2]
@@ -165,33 +165,35 @@
                             <td colspan="2" class="text-start" style="padding: 10px;">Demikian berita acara ini dibuat dengan sebenarnya.</td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="text-end" style="padding-top: 25px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
+                            <td colspan="2" class="text-end" style="padding-top: 25px; padding-right: 80px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" style="text-align:center"></td>
+                            <td width="50%" style="text-align:center; padding-top: 30px;">Ketua Tim Penguji</td>
                         </tr>
                         <tr>
                             <td style="text-align:center"></td>
-                            <td style="text-align:center">Ketua Tim Penguji</td>
-                        </tr>
-                        <tr>
-                            <td style="position: relative">
-                                
-                            </td>
-                            <td style="position: relative">
+                            <td style="text-align:center; padding: 2px 0;">
                                 @if(isset($jadwal->penguji1->signature) && $jadwal->penguji1->signature)
-                                    <img src="{{ asset('storage/' . $jadwal->penguji1->signature) }}" alt="" style="position: absolute;right:130px;margin-top:20px;width:180px">
+                                    <img src="{{ storage_path('app/public/' . $jadwal->penguji1->signature) }}" alt="" style="width: 150px; height: auto;">
                                 @else
-                                    <div style="position: absolute;right:130px;margin-top:20px;width:180px;height:60px;border: 1px solid #000;text-align:center;line-height:60px;font-size:12px;">
+                                    <div style="width: 150px; height: 80px; border: 1px solid #000; text-align: center; line-height: 80px; font-size: 12px; margin: 0 auto;">
                                         [Tanda Tangan Penguji 1]
                                     </div>
                                 @endif
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td style="text-align:center;padding-top: 120px;">({{ $jadwal->penguji1->name }})</td>
+                            <td style="text-align:center"></td>
+                            <td style="text-align:center; padding-top: 5px;">
+                                <strong>({{ $jadwal->penguji1->name }})</strong>
+                            </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td style="text-align:center">NIP/NIPH. {{ $jadwal->penguji1->dosen->nip }}</td>
+                            <td style="text-align:center"></td>
+                            <td style="text-align:center; padding-top: 2px;">
+                                NIP. {{ $jadwal->penguji1->dosen ? $jadwal->penguji1->dosen->nip : '-' }}
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -204,3 +206,4 @@
     @endforeach
 </div>
 @endsection
+

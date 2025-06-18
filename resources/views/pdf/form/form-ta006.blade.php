@@ -42,7 +42,7 @@
                     <tr>
                         <td>Prodi / Jurusan</td>
                         <td>:</td>
-                        <td colspan="2">Sistem Informasi / Matematika dan Teknologi Informasi</td>
+                        <td colspan="2">Sistem Informasi / Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td colspan="5"></td>

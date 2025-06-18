@@ -87,7 +87,7 @@
 
                                     </div>
                                     <div class="mt-4 mt-md-5 text-center">
-                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> <a href="https://is.itk.ac.id">Sistem Informasi ITK.</a><br>Developed by <a href="https://www.linkedin.com/in/ganisjrs/">Ganis J. R. Silitonga.</a></p>
+                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> <a href="https://is.itk.ac.id">Sistem Informasi ITK.</a><br>Developed by <a href="#">Sri Rahayu Natasia</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,12 @@
                     </div>
                     <!-- end col -->
                     <div class="col-xxl-9 col-lg-8 col-md-7">
-                        <div class="auth-bg pt-md-5 p-4 d-flex" style="background-image: url('{{ asset('assets/img/foto-itk.jpg')}}')">
+                        <div class="auth-bg pt-md-5 p-4 d-flex" style="
+                            background-image: url('{{ asset('assets/img/foto-itk.jpg')}}');
+                            background-size: contain;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                        ">
                             <div class="bg-overlay bg-primary"></div>
                             <ul class="bg-bubbles">
                                 <li></li>

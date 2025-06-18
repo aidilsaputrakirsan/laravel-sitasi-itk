@@ -178,11 +178,27 @@ class PDFController extends Controller
 
     public function berita_acara_sempro(Request $request)
     {
+        // Performance optimization
+        set_time_limit(120);
+        ini_set('memory_limit', '512M');
+        
         if (!$request->periodeId) {
             return redirect('dashboard')->with('error', 'Periode tidak tersedia');
         }
+        
         $periodeId = $request->periodeId;
-        $data['jadwals'] = JadwalSempro::where('periode_id', $periodeId)->get();
+        
+        // FIX: Add eager loading for signatures and relationships
+        $data['jadwals'] = JadwalSempro::with([
+            'user.mahasiswa.pengajuanTA.pembimbing1:id,name,signature',
+            'user.mahasiswa.pengajuanTA.pembimbing2:id,name,signature', 
+            'user.sempro.penilaianSempros',
+            'penguji1:id,name,signature',
+            'penguji1.dosen',  // Remove field selection, load all dosen fields
+            'penguji2:id,name,signature',
+            'penguji2.dosen'   // Also add dosen for penguji2
+        ])->where('periode_id', $periodeId)->get();
+        
         $data['sempros'] = Sempro::with(['user.mahasiswa' => function($query) {
             $query->orderBy('nim', 'ASC');
         }])->where('periode_id', $periodeId)
@@ -191,7 +207,9 @@ class PDFController extends Controller
             ->sortBy(function($sempro) {
                 return $sempro->status === 'Diterima' ? 0 : 1;
             });
+            
         $data['periode'] = Periode::where('id', $periodeId)->first();
+        
         return $this->pdfService->loadView('pdf.form.berita-acara-sempro', $data, false, 'legal');
     }
 
