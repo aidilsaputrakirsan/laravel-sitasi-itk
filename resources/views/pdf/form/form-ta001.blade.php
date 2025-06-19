@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <td style="padding-top:10px;"></td>
-                        <td style="padding-top:10px;">NIP/NIPH</td>
+                        <td style="padding-top:10px;">NIP</td>
                         <td>:</td>
                         <td> {{ $pengajuan->pembimbing1->dosen->nip }}</td>
                     </tr>
@@ -90,12 +90,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->mahasiswa->user->signature !== null)
-                            <img src="{{ Storage::disk('s3')->url($pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
                             @endif
                         </td>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing1->signature !== null)
-                            <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing1->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
                             @endif
                         </td>
                     </tr>
@@ -105,7 +105,7 @@
                     </tr>
                     <tr>
                         <td style="text-align:center">NIM. {{ $pengajuan->mahasiswa->nim }}</td>
-                        <td style="text-align:center">NIP/NIPH. {{ $pengajuan->pembimbing1->dosen->nip }}</td>
+                        <td style="text-align:center">NIP. {{ $pengajuan->pembimbing1->dosen->nip }}</td>
                     </tr>
                 </table>
             </div>
@@ -141,7 +141,7 @@
                     </tr>
                     <tr>
                         <td style="padding-top:10px;"></td>
-                        <td style="padding-top:10px;">NIP/NIPH</td>
+                        <td style="padding-top:10px;">NIP</td>
                         <td>:</td>
                         <td> {{ $pengajuan->pembimbing2->dosen->nip }}</td>
                     </tr>
@@ -200,12 +200,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->mahasiswa->user->signature !== null)
-                            <img src="{{ Storage::disk('s3')->url($pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
                             @endif
                         </td>
                         <td style="position: relative">
-                            @if($pengajuan->pembimbing1->signature !== null)
-                            <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing1->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
+                            @if($pengajuan->pembimbing2->signature !== null)
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
                             @endif
                         </td>
                     </tr>
@@ -215,7 +215,7 @@
                     </tr>
                     <tr>
                         <td style="text-align:center">NIM. {{ $pengajuan->mahasiswa->nim }}</td>
-                        <td style="text-align:center">NIP/NIPH. {{ $pengajuan->pembimbing2->dosen->nip }}</td>
+                        <td style="text-align:center">NIP. {{ $pengajuan->pembimbing2->dosen->nip }}</td>
                     </tr>
                 </table>
             </div>

@@ -84,7 +84,7 @@
                                                 @if(isset($editState[$mahasiswa->user->id]) && $editState[$mahasiswa->user->id])
                                                 <input type="date" wire:model="editData.{{ $mahasiswa->user->id }}.tanggal_sidang">
                                                 @else
-                                                {{ $mahasiswa->periode->jadwalSidangs()->where('user_id', $mahasiswa->user->id)->first() ? \Carbon\Carbon::parse($mahasiswa->periode->jadwalSidangs()->where('user_id', $mahasiswa->user->id)->first()->tanggal_sidang)->isoFormat('dddd, d MMMM Y') : '' }}
+                                                {{ \App\Models\JadwalTA::where('periode_id', $periode_id)->where('user_id', $mahasiswa->user->id)->value('tanggal_sidang') }}
                                                 @endif
                                             </td>
                                             <td wire:dblClick="editTable('{{ $mahasiswa->user->id }}')">

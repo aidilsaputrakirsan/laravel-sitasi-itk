@@ -110,7 +110,7 @@
                                                 @if(isset($editState[$mahasiswa->user->id]) && $editState[$mahasiswa->user->id])
                                                 <input type="date" wire:model="editData.{{ $mahasiswa->user->id }}.tanggal_sempro">
                                                 @else
-                                                {{ $mahasiswa->periode->jadwalSempros()->where('user_id', $mahasiswa->user->id)->first() ? \Carbon\Carbon::parse($mahasiswa->periode->jadwalSempros()->where('user_id', $mahasiswa->user->id)->first()->tanggal_sempro)->isoFormat('dddd, d MMMM Y') : '' }}
+                                               {{ \App\Models\JadwalSempro::where('periode_id', $periode_id)->where('user_id', $mahasiswa->user->id)->value('tanggal_sempro') }}
                                                 @endif
                                             </td>
                                             <td wire:dblClick="editTable('{{ $mahasiswa->user->id }}')">

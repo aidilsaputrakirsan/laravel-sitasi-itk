@@ -9,7 +9,7 @@
             <h1 style="font-size: 18px; font-weight:normal;line-height: 0.8;">INSTITUT TEKNOLOGI KALIMANTAN</h1>
             <h6 style="font-size: 14px; font-weight:normal;line-height: 0.6;">Kampus ITK Karang Joang, Balikpapan 76127</h6>
             <h6 style="font-size: 14px; font-weight:normal;line-height: 0.6;">Telepon (0542) 8530800 Faksimile (0542) 8530801</h6>
-            <h6 style="font-size: 14px; font-weight:normal;line-height: 0.6;">Surat elektronik: <a href="mailto:fsti@itk.ac.id" style="color:blue">fsti@itk.ac.id</a> laman: <a href="https://www.itk.ac.id">www.itk.ac.it</a></h6>
+            <h6 style="font-size: 14px; font-weight:normal;line-height: 0.6;">Surat elektronik: <a href="mailto:fsti@itk.ac.id" style="color:blue">fsti@itk.ac.id</a> laman: <a href="https://www.itk.ac.id">www.itk.ac.id</a></h6>
         </div>
         <div class="col-md-12">
             <div style="padding-left:10px;">

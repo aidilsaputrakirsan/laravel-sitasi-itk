@@ -46,7 +46,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Jurusan</td>
                         <td>:</td>
-                        <td> Matematika dan Teknologi Informasi</td>
+                        <td> Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td style="padding-top:10px;"></td>
@@ -79,12 +79,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing1->signature !== null)
-                            <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing1->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;left:100px;margin-top:20px;width:120px;">
                             @endif
                         </td>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing2->signature !== null)
-                            <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing2->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing2->signature) }}" style="position: absolute;right:150px;margin-top:20px;width:120px">
                             @endif
                         </td>
                     </tr>
@@ -93,8 +93,8 @@
                         <td style="text-align:center;padding-top: 120px;">({{ $pengajuan->pembimbing2->dosen->nama_dosen }})</td>
                     </tr>
                     <tr>
-                        <td style="text-align:center">NIP/NIPH. {{ $pengajuan->pembimbing1->dosen->nip }}</td>
-                        <td style="text-align:center">NIP/NIPH. {{ $pengajuan->pembimbing2->dosen->nip }}</td>
+                        <td style="text-align:center">NIP. {{ $pengajuan->pembimbing1->dosen->nip }}</td>
+                        <td style="text-align:center">NIP. {{ $pengajuan->pembimbing2->dosen->nip }}</td>
                     </tr>
                 </table>
             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.surat')
-@section('title', 'Form TA-005A')
+@section('title', 'Form TA-005')
 
 @section('content')
 <!-- Tahap 1 -->
@@ -11,7 +11,7 @@
             <div class="col-12">
                 <table width="100%">
                     <tr>
-                        <td class="text-end"><b>Form. TA-005A</b></td>
+                        <td class="text-end"><b>Form. TA-005</b></td>
                     </tr>
                 </table>
                 <table width="100%" class="mt-4">
@@ -28,7 +28,7 @@
                     <tr>
                         <td style="padding-top:10px;">Program Studi / Jurusan</td>
                         <td style="padding-top:10px;">:</td>
-                        <td style="padding-top:10px;"> Sistem Informasi / Matematika dan Teknologi Informasi</td>
+                        <td style="padding-top:10px;"> Sistem Informasi / Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td style="padding-top:10px;vertical-align:top">Judul TA</td>
@@ -54,7 +54,7 @@
                             <td style="border: 1px solid #000;padding:5px;text-align:start">
                                 @if($pengajuan->pembimbing1->signature !== null)
                                 <div style="text-align:center">
-                                    <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing1->signature) }}" style="width:100px;text-align:center">
+                                    <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="width:100px;text-align:center">
                                 </div>
                                 @endif
                             </td>
@@ -66,7 +66,7 @@
                             <td style="border: 1px solid #000;padding:5px;text-align:start">
                                 @if($pengajuan->pembimbing2->signature !== null)
                                 <div style="text-align:center">
-                                    <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing2->signature) }}" style="width:100px;text-align:center">
+                                    <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing2->signature) }}" style="width:100px;text-align:center">
                                 </div>
                                 @endif
                             </td>
@@ -78,7 +78,7 @@
                             <td style="border: 1px solid #000;padding:5px;text-align:start">
                                 @if($pengajuan->jadwal->penguji1->signature !== null)
                                 <div style="text-align:center">
-                                    <img src="{{ Storage::disk('s3')->url($pengajuan->jadwal->penguji1->signature) }}" style="width:100px;text-align:center">
+                                    <img src="{{ storage_path('app/public/' . $pengajuan->jadwal->penguji1->signature) }}" style="width:100px;text-align:center">
                                 </div>
                                 @endif
                             </td>
@@ -90,7 +90,7 @@
                             <td style="border: 1px solid #000;padding:5px;text-align:start">
                                 @if($pengajuan->jadwal->penguji2->signature !== null)
                                 <div style="text-align:center">
-                                    <img src="{{ Storage::disk('s3')->url($pengajuan->jadwal->penguji2->signature) }}" style="width:100px;text-align:center">
+                                    <img src="{{ storage_path('app/public/' . $pengajuan->jadwal->penguji2->signature) }}" style="width:100px;text-align:center">
                                 </div>
                                 @endif
                             </td>

@@ -63,7 +63,7 @@
                         <td>
                             @if($pengajuan->mahasiswa->user->signature !== null)
                             <div style="position: relative">
-                                <img src="{{ Storage::disk('s3')->url($pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:260px;margin-top:20px;width:180px;text-align:center">
+                                <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:260px;margin-top:20px;width:180px;text-align:center">
                             </div>
                             @endif
                         </td>
@@ -85,14 +85,14 @@
                         <td>
                             @if($pengajuan->pembimbing1->signature !== null)
                             <div style="position: relative">
-                                <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing1->signature) }}" style="position: absolute;left:80px;margin-top:20px;width:180px;text-align:center">
+                                <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;left:80px;margin-top:20px;width:180px;text-align:center">
                             </div>
                             @endif
                         </td>
                         <td>
                             @if($pengajuan->pembimbing2->signature !== null)
                             <div style="position: relative">
-                                <img src="{{ Storage::disk('s3')->url($pengajuan->pembimbing2->signature) }}" style="position: absolute;right:80px;margin-top:20px;width:180px;text-align:center">
+                                <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing2->signature) }}" style="position: absolute;right:80px;margin-top:20px;width:180px;text-align:center">
                             </div>
                             @endif
                         </td>
@@ -102,8 +102,8 @@
                         <td style="text-align:center;padding-top: 120px;">{{ $pengajuan->pembimbing2->dosen->nama_dosen }}</td>
                     </tr>
                     <tr>
-                        <td style="text-align:center">NIP/NIPH. {{ $pengajuan->pembimbing1->dosen->nip }}</td>
-                        <td style="text-align:center">NIP/NIPH. {{ $pengajuan->pembimbing2->dosen->nip }}</td>
+                        <td style="text-align:center">NIP. {{ $pengajuan->pembimbing1->dosen->nip }}</td>
+                        <td style="text-align:center">NIP. {{ $pengajuan->pembimbing2->dosen->nip }}</td>
                     </tr>
                 </table>
             </div>

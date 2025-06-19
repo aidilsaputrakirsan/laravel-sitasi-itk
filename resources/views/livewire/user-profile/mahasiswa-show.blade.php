@@ -199,7 +199,7 @@
                     <div>
                         <div id="imagePreview" class="mt-2">
                             @if($imgSignature !== null && !$signature)
-                                <img src="{{ Storage::disk('s3')->url($imgSignature) }}" alt="Tanda tangan" style="width: 100%">
+                                <img src="{{ storage_path('app/public/' . $imgSignature) }}" alt="Tanda tangan" style="width: 100%">
                             @elseif($signature)
                                 <img src="{{ $signature->temporaryUrl() }}" alt="Tanda tangan" style="width: 100%">
                             @endif
