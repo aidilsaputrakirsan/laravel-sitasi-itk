@@ -15,6 +15,7 @@ class Edit extends Component
     public $nama;
     public $nip;
     public $email;
+    public $jabatan_akademik;
     public $roles = [];
     public $role;
 
@@ -26,6 +27,7 @@ class Edit extends Component
         $this->nama = $this->dosen->nama_dosen;
         $this->nip = $this->dosen->nip;
         $this->email = $this->dosen->email;
+        $this->jabatan_akademik = $this->dosen->jabatan_akademik;
         $roles = $this->dosen->user->roles->pluck('name')->toArray();
 
         $roles = array_filter($roles, function($role) {
@@ -91,6 +93,7 @@ class Edit extends Component
             'nama_dosen' => $this->nama,
             'nip' => $this->nip,
             'email' => $this->email,
+            'jabatan_akademik' => $this->jabatan_akademik,
         ]);
 
 

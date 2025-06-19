@@ -18,6 +18,19 @@
                         @error('nip') <small class="text-danger">{{ $message }}</small> @endif
                     </div>
                     <div class="mb-3">
+                        <label for="jabatan_akademik" class="form-label">Jabatan Akademik</label>
+                        <select class="form-control" wire:model="jabatan_akademik" required>
+                            <option value="">Pilih Jabatan Akademik</option>
+                            <option value="Asisten Ahli">Asisten Ahli</option>
+                            <option value="Lektor">Lektor</option>
+                            <option value="Lektor Kepala">Lektor Kepala</option>
+                            <option value="Profesor">Profesor</option>
+                            <option value="Guru Besar">Guru Besar</option>
+                        </select>
+                        @error('jabatan_akademik') <small class="text-danger">{{ $message }}</small> @endif
+                    </div>
+
+                    <div class="mb-3">
                         <label for="dosen" class="form-label">Email</label>
                         <input type="text" class="form-control" wire:model="email" placeholder="Masukkan Email" required>
                         @error('email') <small class="text-danger">{{ $message }}</small> @endif

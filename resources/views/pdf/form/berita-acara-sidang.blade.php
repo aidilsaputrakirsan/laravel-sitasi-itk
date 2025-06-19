@@ -111,7 +111,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countTotalSidang($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->sidang->penilaianSidang()->get(), $jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if($jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->signature) }}" alt="" style="width: 80px;">
                                     @endif
                                 </td>
                             </tr>
@@ -123,7 +123,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countTotalSidang($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->sidang->penilaianSidang()->get(), $jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji2->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if($jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji2->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji2->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji2->signature) }}" alt="" style="width: 80px;">
                                     @endif
                                 </td>
                             </tr>
@@ -135,7 +135,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countTotalSidang($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if($jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing1->signature) }}" alt="" style="width: 80px;">
                                     @endif
                                 </td>
                             </tr>
@@ -147,7 +147,7 @@
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">{{ number_format(NilaiHelper::countTotalSidang($jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->sempro->penilaianSempros()->get(), $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->id), 2) }}</td>
                                 <td style="border: 1px solid #000;padding:5px;text-align:center;">
                                     @if($jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature !== null)
-                                        <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) }}" alt="" style="width: 80px;">
+                                        <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->pembimbing2->signature) }}" alt="" style="width: 80px;">
                                     @endif
                                 </td>
                             </tr>
@@ -191,7 +191,7 @@
                             </td>
                             <td style="position: relative">
                                 @if($jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->signature !== null)
-                                    <img src="{{ Storage::disk('s3')->url($jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->signature) }}" alt="" style="position: absolute;right:130px;margin-top:10px;width:180px">
+                                    <img src="{{ storage_path('app/public/' . $jadwal->user->mahasiswa->pengajuanTA->jadwal->penguji1->signature) }}" alt="" style="position: absolute;right:130px;margin-top:10px;width:180px">
                                 @endif
                             </td>
                         </tr>

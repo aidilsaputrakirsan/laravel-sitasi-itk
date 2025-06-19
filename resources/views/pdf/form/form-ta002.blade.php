@@ -28,7 +28,7 @@
                     <tr>
                         <td style="padding-top:10px;">Program Studi / Jurusan</td>
                         <td style="padding-top:10px;">:</td>
-                        <td style="padding-top:10px;"> Sistem Informasi / Matematika dan Teknologi Informasi</td>
+                        <td style="padding-top:10px;"> Sistem Informasi / Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td style="padding-top:10px;">Bidang Konsentrasi Penelitian</td>

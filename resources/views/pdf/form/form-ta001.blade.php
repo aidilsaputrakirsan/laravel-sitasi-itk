@@ -39,7 +39,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Jabatan Akademik</td>
                         <td>:</td>
-                        <td></td>
+                        <td> {{ $pengajuan->pembimbing1->dosen->jabatan_akademik ?? '-' }}</td>
                     </tr>
                     <tr>
                         <td style="padding-top:10px;"></td>
@@ -72,7 +72,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Jurusan</td>
                         <td>:</td>
-                        <td> Matematika dan Teknologi Informasi</td>
+                        <td> Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td colspan="4" style="padding-top:18px;text-align:justify;">Demikianlah surat kesediaan ini saya buat dengan sesungguhnya untuk dipergunakan sebagaimana mestinya.</td>
@@ -90,12 +90,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->mahasiswa->user->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:80px;margin-top:-20px;width:120px;">
                             @endif
                         </td>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing1->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:160px;margin-top:5px;width:120px">
                             @endif
                         </td>
                     </tr>
@@ -149,7 +149,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Jabatan Akademik</td>
                         <td>:</td>
-                        <td></td>
+                        <td> {{ $pengajuan->pembimbing2->dosen->jabatan_akademik ?? '-' }}</td>
                     </tr>
                     <tr>
                         <td style="padding-top:10px;"></td>
@@ -182,7 +182,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Jurusan</td>
                         <td>:</td>
-                        <td> Matematika dan Teknologi Informasi</td>
+                        <td> Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td colspan="4" style="padding-top:18px;text-align:justify;">Demikianlah surat kesediaan ini saya buat dengan sesungguhnya untuk dipergunakan sebagaimana mestinya.</td>
@@ -200,12 +200,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->mahasiswa->user->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:60px;margin-top:20px;width:180px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:120px;margin-top:-20px;width:120px;">
                             @endif
                         </td>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing2->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:60px;margin-top:20px;width:180px">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing2->signature) }}" style="position: absolute;right:100px;margin-top:0px;width:120px">
                             @endif
                         </td>
                     </tr>
