@@ -12,6 +12,7 @@ use App\Models\Sempro;
 use App\Traits\NotifikasiTraits;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class SeminarProposal extends Component
 {
@@ -36,6 +37,7 @@ class SeminarProposal extends Component
     public $isi_laporan_ta;
     public $struktur_penulisan;
     public $total_nilai;
+    public $workingDaysInfo;
 
     #[Url]
     public $type;
@@ -210,7 +212,8 @@ class SeminarProposal extends Component
 
     public function openRevisiModal($mahasiswaId)
     {
-        $this->mahasiswaId = $mahasiswaId;
+        $this->mahasiswaId = $mahasiswaId;          
+        $this->workingDaysInfo = $this->calculateWorkingDays($mahasiswaId);
         $this->setujuiRevisiModal = true;
         $this->js("document.getElementById('js-display-modal').setAttribute('class', 'modal-backdrop fade show')");
     }
@@ -270,6 +273,7 @@ class SeminarProposal extends Component
                 ->where('user_id', $this->dataPengajuan->pembimbing_2)
                 ->where('status', 'Disetujui Pembimbing')
                 ->first();
+                 
         $this->isApprovePembimbing1 = $riwayat1 ? true : false;
         $this->isApprovePembimbing2 = $riwayat2 ? true : false;
         $this->sempro = $this->dataPengajuan->mahasiswa->user->sempro;
@@ -420,4 +424,66 @@ class SeminarProposal extends Component
         }
         return view('livewire.pengajuan-ta.seminar-proposal');
     }
+
+    public function calculateWorkingDays($mahasiswaId)
+    {
+
+        // Ambil user_id dari mahasiswa_id
+        $mahasiswa = \DB::table('mahasiswas')->where('id', $mahasiswaId)->first();
+        
+        if (!$mahasiswa) {
+            return ['jadwal_ada' => false, 'pesan' => 'Data mahasiswa tidak ditemukan'];
+        }
+
+        // Ambil jadwal seminar proposal mahasiswa ini
+        $jadwal = \DB::table('jadwal_sempros')
+            ->where('user_id', $mahasiswa->user_id)  // ← ini yang penting
+            ->first();
+        
+        if (!$jadwal) {
+            return [
+                'jadwal_ada' => false,
+                'pesan' => 'Jadwal seminar proposal belum ditentukan'
+            ];
+        }
+        
+        $tanggalSetuju = \Carbon\Carbon::now();
+        $tanggalSeminar = \Carbon\Carbon::parse($jadwal->tanggal_sempro);
+        
+        // Hitung hari kerja dari H+1 setelah seminar sampai tanggal setuju
+        $hPlusOne = $tanggalSeminar->copy()->addDay();
+        $workingDays = 0;
+        $currentDate = $hPlusOne->copy();
+        
+        while ($currentDate->lte($tanggalSetuju)) {
+            if ($currentDate->isWeekday()) { // Senin-Jumat saja
+                $workingDays++;
+            }
+            $currentDate->addDay();
+        }
+        
+        // Tentukan status
+        if ($tanggalSetuju->lt($hPlusOne)) {
+            $status = 'terlalu_cepat';
+            $pesan = "⚠️ Belum H+1 setelah jadwal seminar proposal";
+        } elseif ($workingDays <= 20) {
+            $status = 'normal';
+            $pesan = "✅ Dalam batas waktu normal ($workingDays hari kerja setelah seminar)";
+        } else {
+            $status = 'terlambat';
+            $pesan = "⚠️ Sudah lewat batas maksimal ($workingDays hari kerja, maks 20 hari kerja)";
+        }
+        
+        return [
+            'jadwal_ada' => true,
+            'tanggal_setuju' => $tanggalSetuju->format('d/m/Y'),
+            'tanggal_seminar' => $tanggalSeminar->format('d/m/Y'),
+            'waktu_seminar' => $jadwal->waktu_mulai . ' - ' . $jadwal->waktu_selesai,
+            'ruangan' => $jadwal->ruangan,
+            'hari_kerja' => $workingDays,
+            'status' => $status,
+            'pesan' => $pesan
+        ];
+    }
+
 }

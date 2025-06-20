@@ -71,7 +71,7 @@
                             
                         </td>
                         <td style="position: relative">
-                            <span style="position: absolute;right:250px;margin-top:80px;">Materai 10.000</span>
+                            <span style="position: absolute;right:290px;margin-top:50px;font-size:10px;">Materai 10.000</span>
                         </td>
                     </tr>
                     <tr>

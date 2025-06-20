@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Traits\NotifikasiTraits;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class SidangTa extends Component
 {
@@ -43,6 +44,7 @@ class SidangTa extends Component
     public $struktur_penulisan;
     public $sikap_kinerja;
     public $total_nilai;
+    public $workingDaysInfo;
 
     #[Url]
     public $type;
@@ -223,6 +225,7 @@ class SidangTa extends Component
     public function openRevisiModal($mahasiswaId)
     {
         $this->mahasiswaId = $mahasiswaId;
+        $this->workingDaysInfo = $this->calculateWorkingDaysTA($mahasiswaId); 
         $this->setujuiRevisiModal = true;
         $this->js("document.getElementById('js-display-modal').setAttribute('class', 'modal-backdrop fade show')");
     }
@@ -495,4 +498,69 @@ class SidangTa extends Component
             return view('livewire.pengajuan-ta.sidang-ta');
         }
     }
+
+    // Tambah method untuk Sidang TA
+    public function calculateWorkingDaysTA($mahasiswaId)
+    {
+        // Ambil user_id dari mahasiswa_id
+        $mahasiswa = \DB::table('mahasiswas')->where('id', $mahasiswaId)->first();
+        
+        if (!$mahasiswa) {
+            return [
+                'jadwal_ada' => false,
+                'pesan' => 'Data mahasiswa tidak ditemukan'
+            ];
+        }
+        
+        // Ambil jadwal sidang TA (bukan sempro)
+        $jadwal = \DB::table('jadwal_ta')
+            ->where('user_id', $mahasiswa->user_id)
+            ->first();
+        
+        if (!$jadwal) {
+            return [
+                'jadwal_ada' => false,
+                'pesan' => 'Jadwal sidang TA belum ditentukan'
+            ];
+        }
+        
+        $tanggalSetuju = \Carbon\Carbon::now();
+        $tanggalSidang = \Carbon\Carbon::parse($jadwal->tanggal_sidang); // ← pakai tanggal_sidang
+        
+        // Hitung hari kerja dari H+1 setelah sidang sampai tanggal setuju
+        $hPlusOne = $tanggalSidang->copy()->addDay();
+        $workingDays = 0;
+        $currentDate = $hPlusOne->copy();
+        
+        while ($currentDate->lte($tanggalSetuju)) {
+            if ($currentDate->isWeekday()) {
+                $workingDays++;
+            }
+            $currentDate->addDay();
+        }
+        
+        // Tentukan status
+        if ($tanggalSetuju->lt($hPlusOne)) {
+            $status = 'terlalu_cepat';
+            $pesan = "⚠️ Belum H+1 setelah jadwal sidang TA";
+        } elseif ($workingDays <= 20) {
+            $status = 'normal';
+            $pesan = "✅ Dalam batas waktu normal ($workingDays hari kerja setelah sidang)";
+        } else {
+            $status = 'terlambat';
+            $pesan = "⚠️ Sudah lewat batas maksimal ($workingDays hari kerja, maks 20 hari kerja)";
+        }
+        
+        return [
+            'jadwal_ada' => true,
+            'tanggal_setuju' => $tanggalSetuju->format('d/m/Y'),
+            'tanggal_sidang' => $tanggalSidang->format('d/m/Y'),
+            'waktu_sidang' => $jadwal->waktu_mulai . ' - ' . $jadwal->waktu_selesai,
+            'ruangan' => $jadwal->ruangan,
+            'hari_kerja' => $workingDays,
+            'status' => $status,
+            'pesan' => $pesan
+        ];
+    }
+
 }

@@ -51,8 +51,16 @@
                                         @foreach($pengajuans as $pengajuan)
                                         <tr>
                                             <td wire:click="openDetail('{{ $pengajuan->id }}')">{{ $loop->iteration }}.</td>
-                                            <td wire:click="openDetail('{{ $pengajuan->id }}')">
-                                                {{ $pengajuan->mahasiswa->nama }}
+                                            <td>
+                                                <span
+                                                    wire:click="openDetail('{{ $pengajuan->id }}')"
+                                                    title="Klik untuk melihat file pendukung"
+                                                    style="cursor: pointer; color: #007bff; font-weight: 600; transition: all 0.3s ease;"
+                                                    onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#e3f2fd'; this.style.padding='4px 8px'; this.style.borderRadius='4px'; this.style.color='#0056b3'; this.style.transform='scale(1.02)';"
+                                                    onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent'; this.style.padding='0'; this.style.color='#007bff'; this.style.transform='scale(1)';"
+                                                >
+                                                    {{ $pengajuan->mahasiswa->nama }}
+                                                </span>
                                             </td>
                                             <td wire:click="openDetail('{{ $pengajuan->id }}')">{{ $pengajuan->mahasiswa->nim }}</td>
                                             <td style="white-space: pre-wrap" wire:click="openDetail('{{ $pengajuan->id }}')">{{ $pengajuan->mahasiswa->pengajuanTA->judul }}</td>
@@ -269,7 +277,10 @@
             @if($detailMahasiswa)
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">File Pendukung {{ $dataPengajuan->mahasiswa->nama }}</h5>
+                    <div class="bg-green-50 border-l-4 border-green-400 p-3 mb-4">
+                        <h5 class="text-green-800 font-semibold">File Pendukung: {{ $dataPengajuan->mahasiswa->nama }}</h5>
+                        <p class="text-green-600 text-sm">NIM: {{ $dataPengajuan->mahasiswa->nim }}</p>
+                    </div>
                     <div class="list-group list-group-flush">
                         @if($isApprovePembimbing1 && $isApprovePembimbing2)
                         <a href="{{ route('pdf:form-ta-001', ['userId' => $dataPengajuan->mahasiswa->user->id]) }}" target="_blank" class="list-group-item list-group-item-action">
@@ -329,21 +340,6 @@
                             </div>
                         </a>
                         @endif
-                        @if($sempro && $sempro->bukti_plagiasi)
-                        <a href="{{ url('storage/' . $sempro->bukti_plagiasi) }}" target="_blank" class="list-group-item list-group-item-action">
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-sm flex-shrink-0 me-3">
-                                    <i class="fa fa-file fa-2x"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div>
-                                        <h5 class="font-size-14 mb-1">Bukti Plagiasi</h5>
-                                        <p class="font-size-13 text-muted mb-0">Lihat file</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        @endif
                         @if($sempro && $sempro->proposal_ta)
                         <a href="{{ url('storage/' . $sempro->proposal_ta) }}" target="_blank" class="list-group-item list-group-item-action">
                             <div class="d-flex align-items-center">
@@ -367,6 +363,17 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-3">File Pendukung</h5>
+                    
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
+                        <div class="flex items-center">
+                            <i class="fa fa-info-circle text-blue-500 mr-2"></i>
+                            <div>
+                                <p class="text-sm font-medium text-blue-800">Cara melihat file:</p>
+                                <p class="text-xs text-blue-600">Klik <span class="font-semibold">nama mahasiswa</span> di tabel</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="list-group list-group-flush">
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex align-items-center">
@@ -427,12 +434,55 @@
                             <div class="alert alert-success">
                                 <p class="text-dark">Apakah anda yakin menyetujui hasil revisi mahasiswa ini?</p>
                             </div>
+                            
+                            {{-- TAMBAHKAN INFO WORKING DAYS --}}
+                            @if($workingDaysInfo && isset($workingDaysInfo['jadwal_ada']) && $workingDaysInfo['jadwal_ada'])
+                            <div class="alert
+                                @if($workingDaysInfo['status'] === 'normal') alert-info
+                                @else alert-warning
+                                @endif">
+                                <h6><i class="fas fa-calendar-alt"></i> Informasi Waktu Persetujuan:</h6>
+                                <p class="mb-1"><strong>Jadwal Seminar:</strong> {{ $workingDaysInfo['tanggal_seminar'] }} ({{ $workingDaysInfo['waktu_seminar'] }})</p>
+                                <p class="mb-1"><strong>Ruangan:</strong> {{ $workingDaysInfo['ruangan'] }}</p>
+                                <p class="mb-1"><strong>Tanggal Persetujuan:</strong> {{ $workingDaysInfo['tanggal_setuju'] }}</p>
+                                <p class="mb-1"><strong>Selisih:</strong> {{ $workingDaysInfo['hari_kerja'] }} hari kerja setelah seminar</p>
+                                <p class="mb-0
+                                    @if($workingDaysInfo['status'] === 'normal') text-success
+                                    @else text-warning
+                                    @endif">
+                                    <strong>{{ $workingDaysInfo['pesan'] }}</strong>
+                                </p>
+                            
+                                @if($workingDaysInfo['status'] !== 'normal')
+                                <hr>
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle"></i>
+                                    Rentang waktu ideal: H+1 sampai maksimal 20 hari kerja setelah seminar proposal.
+                                    Anda tetap dapat melanjutkan persetujuan.
+                                </small>
+                                @endif
+                            </div>
+                            @elseif($workingDaysInfo && !$workingDaysInfo['jadwal_ada'])
+                            <div class="alert alert-warning">
+                                <p class="mb-0 text-warning">{{ $workingDaysInfo['pesan'] }}</p>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" wire:click="closeRevisiModal()">Tutup</button>
-                        <button type="submit" data-bs-dismiss="modal" class="btn btn-info">Setujui</button>
-                    </div>
+                        <button type="submit" data-bs-dismiss="modal"
+                                class="btn
+                                @if($workingDaysInfo && isset($workingDaysInfo['status']) && $workingDaysInfo['status'] === 'normal') btn-info
+                                @else btn-warning
+                                @endif">
+                            @if($workingDaysInfo && isset($workingDaysInfo['status']) && $workingDaysInfo['status'] !== 'normal')
+                            Tetap Setujui
+                            @else
+                            Setujui
+                            @endif
+                        </button>
+                    </div>>
                 </form>
             </div>
         </div>
