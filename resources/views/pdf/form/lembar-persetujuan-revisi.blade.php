@@ -14,12 +14,12 @@
                         <td class="text-end"><b>Form. TA-005</b></td>
                     </tr>
                 </table>
-                <table width="100%" class="mt-4">
+                <table width="100%" class="mt-2">
                     <tr class="text-center">
-                        <td class="text-center"><b>LEMBAR PERSETUJUAN HASIL REVISI <br>PROPOSAL TUGAS AKHIR</b></td>
+                        <td class="text-center"><b>LEMBAR PERSETUJUAN HASIL REVISI PROPOSAL TUGAS AKHIR</b></td>
                     </tr>
                 </table>
-                <table width="100%" class="mt-5">
+                <table width="100%" class="mt-3">
                     <tr>
                         <td width="35%">Nama / NIM</td>
                         <td width="2%">:</td>

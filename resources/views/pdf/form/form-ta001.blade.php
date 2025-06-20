@@ -11,15 +11,15 @@
             <div class="col-12">
                 <table width="100%">
                     <tr>
-                        <td class="text-end"><b>Form. TA-001</b></td>
+                        <td class="text-end" style="padding-right: 50px;"><b>Form. TA-001A</b></td>
                     </tr>
                 </table>
-                <table width="100%" class="mt-4">
+                <table width="100%" class="mt-2">
                     <tr class="text-center">
                         <td class="text-center"><b>FORMULIR USULAN DOSEN PEMBIMBING</b></td>
                     </tr>
                 </table>
-                <table width="100%" class="mt-5">
+                <table width="100%" class="mt-3">
                     <tr>
                         <td colspan="4" style="padding:10px">Saya yang bertanda tangan dibawah ini :</td>
                     </tr>
@@ -78,7 +78,7 @@
                         <td colspan="4" style="padding-top:18px;text-align:justify;">Demikianlah surat kesediaan ini saya buat dengan sesungguhnya untuk dipergunakan sebagaimana mestinya.</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-end" style="padding-top: 25px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
+                        <td colspan="4" class="text-end" style="padding-top: 25px; padding-right: 50px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
                     </tr>
                 </table>
 
@@ -90,12 +90,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->mahasiswa->user->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:80px;margin-top:-20px;width:120px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:100px;margin-top:-20px;width:120px;">
                             @endif
                         </td>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing1->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:160px;margin-top:5px;width:120px">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing1->signature) }}" style="position: absolute;right:140px;margin-top:5px;width:120px">
                             @endif
                         </td>
                     </tr>
@@ -121,7 +121,7 @@
             <div class="col-12">
                 <table width="100%">
                     <tr>
-                        <td class="text-end"><b>Form. TA-001</b></td>
+                        <td class="text-end" style="padding-right: 50px;"><b>Form. TA-001A</b></td>
                     </tr>
                 </table>
                 <table width="100%" class="mt-4">
@@ -188,7 +188,7 @@
                         <td colspan="4" style="padding-top:18px;text-align:justify;">Demikianlah surat kesediaan ini saya buat dengan sesungguhnya untuk dipergunakan sebagaimana mestinya.</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-end" style="padding-top: 25px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
+                        <td colspan="4" class="text-end" style="padding-top: 25px; padding-right: 50px;">Balikpapan, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
                     </tr>
                 </table>
 
@@ -200,12 +200,12 @@
                     <tr>
                         <td style="position: relative">
                             @if($pengajuan->mahasiswa->user->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:120px;margin-top:-20px;width:120px;">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->mahasiswa->user->signature) }}" style="position: absolute;left:140px;margin-top:-20px;width:120px;">
                             @endif
                         </td>
                         <td style="position: relative">
                             @if($pengajuan->pembimbing2->signature !== null)
-                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing2->signature) }}" style="position: absolute;right:100px;margin-top:0px;width:120px">
+                            <img src="{{ storage_path('app/public/' . $pengajuan->pembimbing2->signature) }}" style="position: absolute;right:80px;margin-top:0px;width:120px">
                             @endif
                         </td>
                     </tr>

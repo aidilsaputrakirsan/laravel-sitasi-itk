@@ -525,24 +525,28 @@
                                 @if(count(auth()->user()->sempro->penilaianSempros()->get()) > 0)
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title mb-3">Nilai</h5>
+                                            <h5 class="card-title mb-3">Keterangan</h5>
                                             <div class="list-group list-group-flush">
                                                 @php
                                                     $nilai = NilaiHelper::countNilaiSempro(auth()->user()->sempro->penilaianSempros()->get());
                                                 @endphp
+                                                <!-- 
                                                 <a href="#" class="list-group-item list-group-item-action">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm flex-shrink-0 me-3">
                                                             <i class="fa fa-file-signature fa-2x"></i>
                                                         </div>
                                                         <div class="flex-grow-1">
+                                                            
                                                             <div>
                                                                 <h5 class="font-size-14 mb-1">Nilai</h5>
                                                                 <p class="font-size-13 text-muted mb-0">{{ number_format($nilai, 2)}}</p>
                                                             </div>
+                                                           
                                                         </div>
                                                     </div>
                                                 </a>
+                                                 -->
                                                 <a href="#" class="list-group-item list-group-item-action">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm flex-shrink-0 me-3">
@@ -551,7 +555,7 @@
                                                         <div class="flex-grow-1">
                                                             <div>
                                                                 <h5 class="font-size-14 mb-1">Keterangan</h5>
-                                                                <p class="font-size-13 text-muted mb-0">@if($nilai > 51) <span class="badge bg-success">Lulus</span> @else <span class="badge bg-danger">Tidak lulus</span> @endif </p>
+                                                                <p class="font-size-13 text-muted mb-0">@if($nilai > 51) <span class="badge bg-success">Lulus dengan Revisi</span> @else <span class="badge bg-danger">Tidak lulus</span> @endif </p>
                                                             </div>
                                                         </div>
                                                     </div>

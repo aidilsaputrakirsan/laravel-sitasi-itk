@@ -92,7 +92,7 @@
                                                                 <a href="{{ route('pdf:lembar-persetujuan-revisi', ['userId' => auth()->id()]) }}"
                                                                     target="_blank">
                                                                     <h6 class="text-primary" style="margin-top: 0.2rem;margin-bottom: 0.2rem;"> <i
-                                                                            class="fa fa-file-pdf"></i> Lembar Persetujuan Revisi Proposal TA</h6>
+                                                                            class="fa fa-file-pdf"></i> Lembar Persetujuan Revisi Proposal TA (Form. TA-005)</h6>
                                                                 </a>
                                                                 @else
                                                                 <a href="javascript:;"

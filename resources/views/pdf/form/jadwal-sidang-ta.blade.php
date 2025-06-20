@@ -31,7 +31,7 @@
                     <tr>
                         <td style="padding-top:3px;">Jurusan</td>
                         <td style="padding-top:3px;">:</td>
-                        <td style="padding-top:3px;">Jurusan Matematika dan Teknologi Informasi</td>
+                        <td style="padding-top:3px;">Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                     <tr>
                         <td style="padding-top:3px;">Semester</td>
@@ -139,7 +139,7 @@
                     <tr>
                         <td style="padding-top:3px;">Jurusan</td>
                         <td style="padding-top:3px;">:</td>
-                        <td style="padding-top:3px;">Jurusan Matematika dan Teknologi Informasi</td>
+                        <td style="padding-top:3px;">Teknik Elektro Informatika dan Bisnis</td>
                     </tr>
                 </table>
             </div>

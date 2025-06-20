@@ -14,12 +14,12 @@
                         <td class="text-end"><b>Form. TA-006</b></td>
                     </tr>
                 </table>
-                <table width="100%" class="mt-4">
+                <table width="100%" class="mt-2">
                     <tr class="text-center">
                         <td class="text-center"><b>LEMBAR KONSULTASI BIMBINGAN</b></td>
                     </tr>
                 </table>
-                <table width="100%" class="mt-4">
+                <table width="100%" class="mt-3">
                     <tr>
                         <td width="20%">Nama Mahasiswa</td>
                         <td width="1%" style="text-align:start">:</td>
