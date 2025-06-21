@@ -14,6 +14,7 @@ use App\Traits\UpdateDeleteTraits;
 use Livewire\Attributes\Url;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Hash;
 
 class Show extends Component
 {
@@ -27,6 +28,13 @@ class Show extends Component
     public $imgSignature;
     public $photo;
 
+    public $name;
+    public $username;
+    public $email;
+    public $current_password;
+    public $new_password;
+    public $new_password_confirmation;
+
     #[Url]
     public $type;
 
@@ -34,6 +42,74 @@ class Show extends Component
     {
         $this->setModel(Referensi::class);
         $this->refreshSignature();
+        $this->loadUserData();
+    }
+
+     public function loadUserData()
+    {
+        $user = auth()->user();
+        $this->name = $user->name;
+        $this->username = $user->username;
+        $this->email = $user->email;
+    }
+
+     public function updateProfile()
+    {
+        $this->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . auth()->id(),
+            'email' => 'required|email|unique:users,email,' . auth()->id(),
+            'photo' => 'nullable|image|max:2048'
+        ]);
+
+        $updateData = [
+            'name' => $this->name,
+            'username' => $this->username,
+            'email' => $this->email,
+        ];
+
+        // Handle photo upload
+        if ($this->photo) {
+            $updateData['photo'] = $this->photo->store('uploads/profile', 'public');
+        }
+
+        User::where('id', auth()->id())->update($updateData);
+
+        $this->photo = null;
+        $this->dispatch('alert:data', state: 'success', message: 'Profile berhasil diupdate');
+    }
+
+     public function changePassword()
+    {
+        $this->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6',
+            'new_password_confirmation' => 'required|same:new_password'
+        ], [
+            'current_password.required' => 'Password lama wajib diisi',
+            'new_password.required' => 'Password baru wajib diisi',
+            'new_password.min' => 'Password baru minimal 6 karakter',
+            'new_password_confirmation.required' => 'Konfirmasi password wajib diisi',
+            'new_password_confirmation.same' => 'Konfirmasi password tidak cocok'
+        ]);
+
+        // Cek password lama
+        if (!Hash::check($this->current_password, auth()->user()->password)) {
+            $this->addError('current_password', 'Password lama tidak sesuai');
+            return;
+        }
+
+        // Update password
+        User::where('id', auth()->id())->update([
+            'password' => Hash::make($this->new_password)
+        ]);
+
+        // Reset form
+        $this->current_password = null;
+        $this->new_password = null;
+        $this->new_password_confirmation = null;
+
+        $this->dispatch('alert:data', state: 'success', message: 'Password berhasil diubah');
     }
 
     public function refreshSignature()

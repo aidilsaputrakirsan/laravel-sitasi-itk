@@ -55,12 +55,7 @@
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <div class="d-flex align-items-start">
-                                                    <div class="flex-grow-1">
-                                                        <label class="form-label">Password</label>
-                                                    </div>
-                                                </div>
-                                                
+                                                <label class="form-label">Password</label>
                                                 <div class="input-group auth-pass-inputgroup">
                                                     <input type="password" name="password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
                                                     <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
@@ -78,7 +73,11 @@
                                                         </label>
                                                     </div>  
                                                 </div>
-                                                
+                                                <div class="col-auto">
+                                                    <div class="text-end">
+                                                        <a href="{{ route('password.request') }}" class="text-muted">Lupa Password?</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="mb-3">
                                                 <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In</button>

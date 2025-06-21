@@ -7,6 +7,9 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ChangePasswordController;
+use Illuminate\Support\Facades\Password;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,60 @@ use App\Http\Controllers\PDFController;
 
 // Auth Pages
 Route::get('/login', [PagesController::class, 'loginPage'])->middleware('guest')->name('login');
+
+// ========== FORGOT PASSWORD ROUTES (TAMBAHKAN DI SINI) ==========
+Route::middleware('guest')->group(function() {
+    // Show forgot password form
+    Route::get('/forgot-password', function () {
+        return view('auth.forgot-password');
+    })->name('password.request');
+    
+   // Send reset link (GANTI YANG INI DI routes/web.php)
+    Route::post('/forgot-password', function (Illuminate\Http\Request $request) {
+        $request->validate(['email' => 'required|email|exists:users,email']);
+        
+        // Generate token
+        $token = Str::random(60);
+        
+        // Delete existing tokens for this email
+        DB::table('password_resets')->where('email', $request->email)->delete();
+        
+        // Insert new token
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => Hash::make($token),
+            'created_at' => now()
+        ]);
+        
+        // Get user data
+        $user = App\Models\User::where('email', $request->email)->first();
+        $resetUrl = url('reset-password/' . $token . '?email=' . urlencode($user->email));
+        
+        // Send custom email dengan view langsung (TANPA Mail class)
+        try {
+            Mail::send('emails.custom-reset-password', [
+                'user' => $user,
+                'resetUrl' => $resetUrl,
+                'token' => $token
+            ], function ($message) use ($request) {
+                $message->to($request->email)
+                        ->subject('Reset Password - SITASI ITK');
+            });
+            
+            return back()->with('success', 'Link reset password telah dikirim ke email Anda!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal mengirim email. Silakan coba lagi nanti.');
+        }
+    })->name('password.email');
+    
+    // Show reset password form
+    Route::get('/reset-password/{token}', function (string $token) {
+        return view('auth.reset-password', ['token' => $token]);
+    })->name('password.reset');
+    
+    // Process reset password (menggunakan controller yang sudah ada)
+    Route::post('/reset-password', [ChangePasswordController::class, 'changePassword'])->name('password.update');
+});
 
 // Auth Action
 Route::post('/login', [AuthController::class, 'login']);

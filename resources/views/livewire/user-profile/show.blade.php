@@ -20,7 +20,10 @@
 
                     <ul class="nav nav-tabs-custom card-header-tabs border-top mt-4" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <button class="nav-link px-3 {{ $type !== 'referensi' ? 'active' : '' }}" wire:click="changeTab('')" role="tab">Overview</button>
+                            <button class="nav-link px-3 {{ $type === '' ? 'active' : '' }}" wire:click="changeTab('')" role="tab">Overview</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link px-3 {{ $type === 'edit-profile' ? 'active' : '' }}" wire:click="changeTab('edit-profile')">Edit Profile</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link px-3 {{ $type === 'referensi' ? 'active' : '' }}" wire:click="changeTab('referensi')">Referensi Topik TA</button>
@@ -32,6 +35,8 @@
             <!-- end card -->
 
             <div class="tab-content">
+                {{-- Tab Overview --}}
+                @if($type === '')
                 <div class="tab-pane active" id="overview" role="tabpanel">
                     <div class="card">
                         <div class="card-header">
@@ -127,9 +132,109 @@
                     </div>
                     <!-- end card -->
                 </div>
-                <!-- end tab pane -->
+                @endif
+                <!-- end tab pane overview -->
 
+                {{-- Tab Edit Profile (BARU) --}}
+                @if($type === 'edit-profile')
+                <div class="tab-pane active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Edit Profile</h5>
+                        </div>
+                        <div class="card-body">
+                            <form wire:submit="updateProfile()">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Nama Lengkap</label>
+                                            <input type="text" wire:model="name" class="form-control" required>
+                                            @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Username</label>
+                                            <input type="text" wire:model="username" class="form-control" required>
+                                            @error('username') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Email</label>
+                                            <input type="email" wire:model="email" class="form-control" required>
+                                            @error('email') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Foto Profile</label>
+                                            <input type="file" wire:model="photo" accept="image/*" class="form-control">
+                                            @error('photo') <small class="text-danger">{{ $message }}</small> @enderror
+                                            @if($photo)
+                                                <img src="{{ $photo->temporaryUrl() }}" alt="Preview" class="mt-2" style="width: 100px; height: 100px; object-fit: cover;">
+                                            @elseif(auth()->user()->photo)
+                                                <img src="{{ asset('storage/' . auth()->user()->photo) }}" alt="Current" class="mt-2" style="width: 100px; height: 100px; object-fit: cover;">
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+                    </div>
 
+                    {{-- Change Password Card --}}
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Ganti Password</h5>
+                        </div>
+                        <div class="card-body">
+                            <form wire:submit="changePassword()">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label>Password Lama</label>
+                                            <input type="password" wire:model="current_password" class="form-control" required>
+                                            @error('current_password') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label>Password Baru</label>
+                                            <input type="password" wire:model="new_password" class="form-control" required>
+                                            @error('new_password') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label>Konfirmasi Password Baru</label>
+                                            <input type="password" wire:model="new_password_confirmation" class="form-control" required>
+                                            @error('new_password_confirmation') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-warning">Ganti Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                {{-- Tab Referensi --}}
+                @if($type === 'referensi')
+                <div class="tab-pane active">
+                    {{-- Konten referensi akan ditambahkan di sini --}}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Referensi Topik TA</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Konten referensi topik TA akan ditampilkan di sini.</p>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
             <!-- end tab content -->
         </div>
