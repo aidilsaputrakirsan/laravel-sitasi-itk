@@ -91,20 +91,24 @@
                 </table>
                 <table width="100%" class="mt-2">
                     <tr>
-                        <td>Mengetahui,</td>
-                        <td>Disusun oleh</td>
-                    </tr>
-                    <tr>
-                        <td>Koordinator KP/TA Prodi Sistem Informasi</td>
-                        <td>Administrasi Akademik Jurusan</td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 120px;">Sri Rahayu Natasia, S.Komp., M.Si., M.Sc</td>
-                        <td style="padding-top: 120px;">Wahyuni Lasniah</td>
-                    </tr>
-                    <tr>
-                        <td>NIP. 199001082020122003</td>
-                        <td>NIPH. 100217046</td>
+                        <td width="50%">
+                            <div>Menyetujui,</div>
+                            <div>Koordinator Program Studi Sistem Informasi</div>
+                            <div style="padding-top: 30px;">
+                                <div style="text-align: left; margin-left: 80px; margin-bottom: 30px; font-style: italic;">TTD</div>
+                                Sri Rahayu Natasia, S.Komp., M.Si., M.Sc<br>
+                                NIP. 199001082020122003
+                            </div>
+                        </td>
+                        <td width="50%">
+                            <div>Disusun oleh</div>
+                            <div>Administrasi Akademik Fakultas</div>
+                            <div style="padding-top: 30px;">
+                                <div style="text-align: left; margin-left: 80px; margin-bottom: 30px; font-style: italic;">TTD</div>
+                                Mufida Fatma Ayuningtyas, A.Md<br>
+                                NIPH. 100322153
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -195,16 +199,24 @@
                 </table>
                 <table width="100%" class="mt-2">
                     <tr>
-                        <td>Menyetujui,</td>
-                    </tr>
-                    <tr>
-                        <td>Koordinator Program Studi Sistem Informasi</td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 120px;">Sri Rahayu Natasia, S.Komp., M.Si., M.Sc</td>
-                    </tr>
-                    <tr>
-                        <td>NIP. 199001082020122003</td>
+                        <td width="50%">
+                            <div>Menyetujui,</div>
+                            <div>Koordinator Program Studi Sistem Informasi</div>
+                            <div style="padding-top: 30px;">
+                                <div style="text-align: left; margin-left: 80px; margin-bottom: 30px; font-style: italic;">TTD</div>
+                                Sri Rahayu Natasia, S.Komp., M.Si., M.Sc<br>
+                                NIP. 199001082020122003
+                            </div>
+                        </td>
+                        <td width="50%">
+                            <div>Disusun oleh</div>
+                            <div>Administrasi Akademik Fakultas</div>
+                            <div style="padding-top: 30px;">
+                                <div style="text-align: left; margin-left: 80px; margin-bottom: 30px; font-style: italic;">TTD</div>
+                                Mufida Fatma Ayuningtyas, A.Md<br>
+                                NIPH. 100322153
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>

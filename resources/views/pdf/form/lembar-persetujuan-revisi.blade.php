@@ -84,7 +84,7 @@
                             </td>
                         </tr>
                         <tr style="text-align:start">
-                            <td style="border: 1px solid #000;padding:40px">3. </td>
+                            <td style="border: 1px solid #000;padding:40px">4. </td>
                             <td style="border: 1px solid #000;padding:5px;text-align:start">{{ $pengajuan->jadwal->penguji2->dosen->nama_dosen }}</td>
                             <td style="border: 1px solid #000;padding:5px;text-align:center">{{ $revisiPenguji2 ? \Carbon\Carbon::parse($revisiPenguji2->created_at)->isoFormat('D MMMM YYYY') : null }}</td>
                             <td style="border: 1px solid #000;padding:5px;text-align:start">

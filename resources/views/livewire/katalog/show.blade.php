@@ -35,7 +35,7 @@
                                         <th scope="col">Foto</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Judul</th>
-                                        <th scope="col">Astrak</th>
+                                        <th scope="col">Abstrak</th>
                                         @if(auth()->user()->isTendik() || auth()->user()->isKoorpro())
                                         <th scope="col">Aksi</th>
                                         @endif

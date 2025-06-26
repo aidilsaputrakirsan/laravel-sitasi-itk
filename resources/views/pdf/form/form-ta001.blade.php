@@ -45,7 +45,7 @@
                         <td style="padding-top:10px;"></td>
                         <td style="padding-top:10px;">Unit Kerja</td>
                         <td>:</td>
-                        <td> Dosen Program Studi Sistem Informasi</td>
+                        <td> Program Studi Sistem Informasi</td>
                     </tr>
                     <tr>
                         <td colspan="4" style="padding:10px">dengan ini menyatakan bersedia menjadi Pembimbing Tugas Akhir mahasiswa :</td>
