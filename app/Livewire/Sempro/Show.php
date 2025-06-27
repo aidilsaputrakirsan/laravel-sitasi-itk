@@ -92,13 +92,24 @@ class Show extends Component
         }
 
         $this->validate([
-            'form_ta012' => 'required',
-            'bukti_plagiasi' => 'required',
-            'proposal_ta' => 'required',
-        ],[
+            'form_ta012' => 'required|file|mimes:pdf|max:5120',         // 5MB
+            'bukti_plagiasi' => 'required|file|mimes:pdf|max:10240',    // 10MB  
+            'proposal_ta' => 'required|file|mimes:pdf|max:10240',       // 10MB
+        ], [
             'form_ta012.required' => 'Form. TA-012 Wajib di isi',
+            'form_ta012.file' => 'Form. TA-012 harus berupa file',
+            'form_ta012.mimes' => 'Form. TA-012 harus berupa file PDF',
+            'form_ta012.max' => 'Form. TA-012 maksimal 5MB',
+            
             'bukti_plagiasi.required' => 'Bukti Plagiasi Wajib di isi',
+            'bukti_plagiasi.file' => 'Bukti Plagiasi harus berupa file',
+            'bukti_plagiasi.mimes' => 'Bukti Plagiasi harus berupa file PDF',
+            'bukti_plagiasi.max' => 'Bukti Plagiasi maksimal 10MB',
+            
             'proposal_ta.required' => 'Proposal TA Wajib di isi',
+            'proposal_ta.file' => 'Proposal TA harus berupa file',
+            'proposal_ta.mimes' => 'Proposal TA harus berupa file PDF',
+            'proposal_ta.max' => 'Draft Proposal TA maksimal 10MB',
         ]);
 
         $create = Sempro::create([
@@ -176,9 +187,12 @@ class Show extends Component
     public function saveLembar()
     {
         $this->validate([
-            'form_ta012' => 'required',
+            'form_ta012' => 'required|file|mimes:pdf|max:5120',
         ], [
-            'form_ta012.required' => 'Form. TA-012 Wajib di isi'
+            'form_ta012.required' => 'Form. TA-012 Wajib di isi',
+            'form_ta012.file' => 'Form. TA-012 harus berupa file',
+            'form_ta012.mimes' => 'Form. TA-012 harus berupa file PDF',
+            'form_ta012.max' => 'Form. TA-012 maksimal 5MB',
         ]);
 
         Sempro::where('id', $this->sempros->first()->id)->update([
@@ -211,9 +225,12 @@ class Show extends Component
     public function savePlagiasi()
     {
         $this->validate([
-            'bukti_plagiasi' => 'required',
+            'bukti_plagiasi' => 'required|file|mimes:pdf|max:10240',
         ], [
-            'bukti_plagiasi.required' => 'Bukti Plagiasi Wajib di isi'
+            'bukti_plagiasi.required' => 'Bukti Plagiasi Wajib di isi',
+            'bukti_plagiasi.file' => 'Bukti Plagiasi harus berupa file',
+            'bukti_plagiasi.mimes' => 'Bukti Plagiasi harus berupa file PDF',
+            'bukti_plagiasi.max' => 'Bukti Plagiasi maksimal 10MB',
         ]);
 
         Sempro::where('id', $this->sempros->first()->id)->update([
@@ -245,9 +262,12 @@ class Show extends Component
     public function saveProposal()
     {
         $this->validate([
-            'proposal_ta' => 'required',
+            'proposal_ta' => 'required|file|mimes:pdf|max:10240',
         ], [
-            'proposal_ta.required' => 'Proposal TA Wajib di isi'
+            'proposal_ta.required' => 'Proposal TA Wajib di isi',
+            'proposal_ta.file' => 'Proposal TA harus berupa file',
+            'proposal_ta.mimes' => 'Proposal TA harus berupa file PDF',
+            'proposal_ta.max' => 'Draft Proposal TA maksimal 10MB',
         ]);
 
         Sempro::where('id', $this->sempros->first()->id)->update([

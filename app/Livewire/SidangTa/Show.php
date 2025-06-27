@@ -116,9 +116,24 @@ class Show extends Component
         }
 
         $this->validate([
-            'lembar_revisi' => 'required',
-            'draft_ta' => 'required',
-            'bukti_plagiasi' => 'required',
+            'lembar_revisi' => 'required|file|mimes:pdf|max:5120',      // 5MB
+            'draft_ta' => 'required|file|mimes:pdf|max:14336',          // 14MB (khusus draft TA)
+            'bukti_plagiasi' => 'required|file|mimes:pdf|max:10240',    // 10MB
+        ], [
+            'lembar_revisi.required' => 'Lembar Revisi Wajib di isi',
+            'lembar_revisi.file' => 'Lembar Revisi harus berupa file',
+            'lembar_revisi.mimes' => 'Lembar Revisi harus berupa file PDF',
+            'lembar_revisi.max' => 'Lembar Revisi maksimal 5MB',
+            
+            'draft_ta.required' => 'Draft TA Wajib di isi',
+            'draft_ta.file' => 'Draft TA harus berupa file',
+            'draft_ta.mimes' => 'Draft TA harus berupa file PDF',
+            'draft_ta.max' => 'Draft TA maksimal 14MB',
+            
+            'bukti_plagiasi.required' => 'Bukti Plagiasi Wajib di isi',
+            'bukti_plagiasi.file' => 'Bukti Plagiasi harus berupa file',
+            'bukti_plagiasi.mimes' => 'Bukti Plagiasi harus berupa file PDF',
+            'bukti_plagiasi.max' => 'Bukti Plagiasi maksimal 10MB',
         ]);
 
         $create = SidangTA::create([
@@ -197,9 +212,12 @@ class Show extends Component
     public function saveLembar()
     {
         $this->validate([
-            'lembar_revisi' => 'required',
+            'lembar_revisi' => 'required|file|mimes:pdf|max:5120',
         ], [
             'lembar_revisi.required' => 'Lembar Revisi Wajib di isi',
+            'lembar_revisi.file' => 'Lembar Revisi harus berupa file',
+            'lembar_revisi.mimes' => 'Lembar Revisi harus berupa file PDF',
+            'lembar_revisi.max' => 'Lembar Revisi maksimal 5MB',
         ]);
 
         SidangTA::where('id', $this->sidang->id)->update([
@@ -233,9 +251,12 @@ class Show extends Component
     public function saveDraft()
     {
         $this->validate([
-            'draft_ta' => 'required',
+            'draft_ta' => 'required|file|mimes:pdf|max:14336',
         ], [
             'draft_ta.required' => 'Draft TA Wajib di isi',
+            'draft_ta.file' => 'Draft TA harus berupa file',
+            'draft_ta.mimes' => 'Draft TA harus berupa file PDF',
+            'draft_ta.max' => 'Draft TA maksimal 14MB',
         ]);
 
         SidangTA::where('id', $this->sidang->id)->update([
@@ -269,9 +290,12 @@ class Show extends Component
     public function saveBukti()
     {
         $this->validate([
-            'bukti_plagiasi' => 'required',
+            'bukti_plagiasi' => 'required|file|mimes:pdf|max:10240',
         ], [
-            'bukti_plagiasi.required' => 'Lembar Revisi Wajib di isi',
+            'bukti_plagiasi.required' => 'Bukti Plagiasi Wajib di isi',
+            'bukti_plagiasi.file' => 'Bukti Plagiasi harus berupa file',
+            'bukti_plagiasi.mimes' => 'Bukti Plagiasi harus berupa file PDF',
+            'bukti_plagiasi.max' => 'Bukti Plagiasi maksimal 10MB',
         ]);
 
         SidangTA::where('id', $this->sidang->id)->update([
