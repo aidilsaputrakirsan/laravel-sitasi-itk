@@ -444,6 +444,64 @@
                     </a>
                 @endif
 
+                @if($notif->type === 'tendik-katalog-ta')
+                    <a href="{{ route('katalog:index') }}" class="text-reset notification-item">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 avatar-sm me-3">
+                                <span class="avatar-title bg-info rounded-circle font-size-16">
+                                    <i class="bx bx-book"></i>
+                                </span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">Katalog TA Baru</h6>
+                                <div class="font-size-13 text-muted">
+                                    <p class="mb-1">{{ $notif->from->name . ', '. $notif->data['message'] }}</p>
+                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>{{ $notif->displayTime() }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endif
+
+                @if($notif->type === 'katalog-approved')
+                    <a href="{{ route('ta:katalog-ta') }}" class="text-reset notification-item">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 avatar-sm me-3">
+                                <span class="avatar-title bg-success rounded-circle font-size-16">
+                                    <i class="bx bx-check-circle"></i>
+                                </span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">Katalog TA Disetujui</h6>
+                                <div class="font-size-13 text-muted">
+                                    <p class="mb-1">{{ $notif->data['message'] }}</p>
+                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>{{ $notif->displayTime() }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endif
+
+                {{-- Notification untuk Mahasiswa: Katalog perlu diperbaiki --}}
+                @if($notif->type === 'katalog-rejected')
+                    <a href="{{ route('ta:katalog-ta') }}" class="text-reset notification-item">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 avatar-sm me-3">
+                                <span class="avatar-title bg-warning rounded-circle font-size-16">
+                                    <i class="bx bx-edit"></i>
+                                </span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">Katalog TA Perlu Diperbaiki</h6>
+                                <div class="font-size-13 text-muted">
+                                    <p class="mb-1">{{ $notif->data['message'] }}</p>
+                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>{{ $notif->displayTime() }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endif
+
             @empty
             <a href="#!" class="text-reset notification-item">
                 <div class="d-flex">

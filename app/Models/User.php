@@ -88,5 +88,34 @@ class User extends Authenticatable
     {
         return $this->hasOne(SidangTA::class);
     }
-    
+    public function katalog()
+    {
+        return $this->hasOne(Katalog::class, 'user_id');
+    }
+
+    public function katalogs()
+    {
+        return $this->hasMany(Katalog::class, 'user_id');
+    }
+
+    // Helper method untuk cek kelengkapan revisi sidang TA
+    public function hasCompletedSidangRevisi()
+    {
+        $sidang = $this->sidang()->where('status', 'Diterima')->first();
+        
+        if (!$sidang) {
+            return false;
+        }
+
+        return $sidang->revisi_pembimbing_1 && 
+               $sidang->revisi_pembimbing_2 && 
+               $sidang->revisi_penguji_1 && 
+               $sidang->revisi_penguji_2;
+    }
+
+    // Helper method untuk cek apakah mahasiswa bisa mengisi katalog
+    public function canCreateKatalog()
+    {
+        return $this->isMahasiswa() && $this->hasCompletedSidangRevisi();
+    }
 }

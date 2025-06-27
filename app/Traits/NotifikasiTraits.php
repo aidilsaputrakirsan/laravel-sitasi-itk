@@ -4,8 +4,8 @@ namespace App\Traits;
 
 use App\Models\Notifikasi;
 
-trait NotifikasiTraits {
-
+trait NotifikasiTraits 
+{
     public function addNotif($from, $to, $type, $data)
     {
         Notifikasi::create([
@@ -23,8 +23,14 @@ trait NotifikasiTraits {
 
     public function readTendik()
     {
-        Notifikasi::whereIn('type', ['tendik-seminar-proposal', 'tendik-update-seminar-proposal', 'tendik-sidang-ta', 'tendik-update-sidang-ta'])
-            ->update(['read' => 1]);
+        // Update: Tambahkan 'tendik-katalog-ta' ke dalam list notification tendik
+        Notifikasi::whereIn('type', [
+            'tendik-seminar-proposal', 
+            'tendik-update-seminar-proposal', 
+            'tendik-sidang-ta', 
+            'tendik-update-sidang-ta',
+            'tendik-katalog-ta'  // NEW: notification katalog
+        ])->update(['read' => 1]);
     }
 
     public function jsSidebarClose()

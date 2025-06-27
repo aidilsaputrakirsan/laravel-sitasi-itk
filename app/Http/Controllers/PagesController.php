@@ -160,6 +160,20 @@ class PagesController extends Controller
 
     public function prosedurPage()
     {
+        // FIX: Hapus logic redirect yang salah, kembalikan ke normal
         return view('pages.prosedur.index');
     }
+
+    public function katalogTaMahasiswaPage()
+    {
+        // Hanya mahasiswa yang bisa akses
+        if (!auth()->user()->isMahasiswa()) {
+            return redirect()->route('katalog:index');
+        }
+
+        return view('pages.katalog-ta-mahasiswa');
+    }
+
+    
+    
 }

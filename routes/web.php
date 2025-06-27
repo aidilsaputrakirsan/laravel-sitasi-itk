@@ -99,6 +99,11 @@ Route::middleware(['auth:sanctum'])->group(function() {
         // Sidang TA
         Route::get('/sidang-ta', [PagesController::class, 'sidangTa'])->middleware('auth')->name('ta:sidang-ta');
 
+        // NEW: Katalog TA untuk Mahasiswa
+        Route::get('/katalog-ta', [PagesController::class, 'katalogTaMahasiswaPage'])
+            ->middleware('auth')
+            ->name('ta:katalog-ta');
+
         // Penilaian
         Route::get('/penilaian', [PagesController::class, 'penilaianPage'])->middleware('auth')->name('ta:penilaian');
     });
